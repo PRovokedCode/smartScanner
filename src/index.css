@@ -1,0 +1,569 @@
+/* Add these imports at the top of the file */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+/* Update existing body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #9c2a2a66;
+    color: #ffffff;
+    position: relative; /* Add this */
+}
+
+/* Update body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #0a0a0a; /* Darker background */
+    color: #ffffff;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Update grid background */
+body::before {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+    background-image: 
+        linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridFlow 15s linear infinite;
+}
+
+@keyframes gridFlow {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(40px);
+    }
+}
+
+/* @keyframes gridMove {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} */
+
+/* Update warp effect */
+/* .warp {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 136, 0.2) 0%,
+        rgba(0, 255, 136, 0.1) 30%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    mix-blend-mode: difference;
+    will-change: transform;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+} */
+
+/* Update scan section to be above grid */
+.scan-section {
+    position: relative;
+    z-index: 1;
+    background: rgba(42, 42, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+} 
+
+/*Update scanner container */
+.scanner-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Replace the cursor and warp styles with these updated versions */
+/* /* .warp-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+} */
+
+/* Update the warp size and colors */
+.warp {
+    position: absolute;
+    width: 200px;  /* Reduced from 800px */
+    height: 200px; /* Reduced from 800px */
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 136, 0.08) 0%,  /* Reduced opacity */
+        rgba(0, 255, 136, 0.05) 25%,
+        rgba(0, 255, 136, 0.02) 50%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    will-change: transform;
+    transition: opacity 0.3s ease;
+}
+
+/* Fix the scan section to allow pointer events */
+/* .scan-section {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;  
+    position: relative;    
+    z-index: 1;           
+    border: none;
+       
+        background-color:  black;
+} */
+
+/* Update title styles */
+.title {
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: center;
+    color: #00ff88;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    letter-spacing: -0.5px;
+    transition: transform 0.3s ease;
+}
+
+.title:hover {
+    transform: scale(1.02);
+}
+
+/* Enhanced input styles */
+.input-box {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-box:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #00ff88;
+}
+
+/* Enhanced button styles */
+.scan-button {
+    width: 100%;
+    padding: 1rem;
+    background: #00ff88;
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    transform-origin: center;
+    transition: all 0.3s ease;
+}
+
+.scan-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+}
+
+.scan-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Card animations */
+.token-info-card, .nft-info-card {
+    transition: all 0.3s ease;
+}
+
+.token-info-card:hover, .nft-info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Result page animations */
+.result-page {
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chart container animation */
+.chart-container {
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhanced verified badge */
+.verified-badge {
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+/* Smooth transitions for risk indicators */
+.metric-item .safe,
+.metric-item .warning,
+.metric-item .danger {
+    transition: color 0.3s ease;
+}
+
+/* Enhanced scan-again button */
+.scan-again {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, #444, #555);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.scan-again:hover {
+    background: linear-gradient(45deg, #555, #666);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.error {
+    .error-message {
+        color: #ff4444;
+        background-color: rgba(255, 68, 68, 0.1);
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+.token-details {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.token-info-card {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.token-info-card h3 {
+  margin-top: 0;
+  color: #00ff88;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.metric-item:last-child {
+  border-bottom: none;
+}
+
+.metric-item span {
+  color: #ffffff;
+}
+
+.metric-item .value {
+  font-weight: bold;
+}
+
+.metric-item .safe {
+  color: #00ff88;
+}
+
+.metric-item .warning {
+  color: #ffd700;
+}
+
+.metric-item .danger {
+  color: #ff4444;
+}
+
+.token-details .address {
+  font-family: monospace;
+  font-size: 0.9em;
+  word-break: break-all;
+}
+
+.token-info-card .metric-item .value {
+  max-width: 60%;
+  text-align: right;
+}
+
+.token-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+.input-box.invalid {
+  border-color: #ff0000;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Update scanner container for centered layout */
+.scanner-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Center the initial scan section */
+.scan-section {
+    max-width: 600px;  /* Increased from 500px */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;  /* Increased from 1rem */
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;  /* Increased from 2rem */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Update scan section with solid background */
+.scan-section {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    background: #1e1e1e;  /* Solid dark background */
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+/* Update the scan section */
+/* .scan-section {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;  
+    isolation: isolate;  
+} */
+
+/* Update the warp container */
+.warp-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;  
+    overflow: hidden;
+    mix-blend-mode: normal;
+}
+
+/* Adjust input and button sizes */
+.input-box {
+    width: 95%;  /* Increased from 90% */
+    max-width: 500px;  /* Increased from 400px */
+    padding: 14px;  /* Increased from 12px */
+    border-radius: 8px;
+}
+
+.network-dropdown {
+    width: 95%;
+    max-width: 500px;
+    padding: 14px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #00ff88 50%),
+                      linear-gradient(135deg, #00ff88 50%, transparent 50%);
+    background-position: calc(100% - 20px) center,
+                         calc(100% - 15px) center;
+    background-size: 5px 5px,
+                    5px 5px;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+}
+
+.network-dropdown:hover {
+    border-color: #00ff88;
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.1);
+}
+
+.network-dropdown:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
+}
+
+.network-dropdown option {
+    background: #2a2a2a;
+    color: #fff;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.scan-button {
+    width: 95%;  /* Increased from 90% */
+    max-width: 500px;  /* Increased from 400px */
+    padding: 14px;  /* Increased from 12px */
+    border-radius: 8px;
+}
+
+/* Adjust title size */
+.title {
+    font-size: 2.8rem;  /* Increased from 2.5rem */
+    margin-bottom: 2.5rem;  /* Increased from 2rem */
+}
+
+/* Center error message */
+.error-message {
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 400px;
+}
+.background-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    opacity: 0.3; /* Increased opacity */
+    pointer-events: none;
+    overflow: hidden;
+    animation: gridMove 10s linear infinite; /* Faster animation */
+    background: linear-gradient(45deg, rgba(138, 43, 226, 0.2), rgba(0, 255, 255, 0.2)); /* Vibrant gradient */
+}
+
+.image-container {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); /* Purple glow */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    filter: hue-rotate(30deg) brightness(1.2); /* Color enhancement */
+}
+
+@keyframes gridMove {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-15px) scale(1.02);
+    }
+    50% {
+        transform: translateY(-30px) scale(1);
+    }
+    75% {
+        transform: translateY(-15px) scale(1.02);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
